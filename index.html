@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine? ❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #ff1744, #ff6b9d, #ffc3e0, #ffffff, #ffebee);
+            min-height: 100vh;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .container {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Floating hearts background */
+        .hearts-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 2rem;
+            animation: float 6s ease-in-out infinite;
+            opacity: 0.4;
+        }
+
+        .heart1 { top: 10%; left: 10%; animation-delay: 0s; }
+        .heart2 { top: 20%; right: 15%; animation-delay: 1s; }
+        .heart3 { top: 60%; left: 20%; animation-delay: 2s; }
+        .heart4 { bottom: 20%; right: 10%; animation-delay: 3s; }
+        .heart5 { bottom: 40%; left: 80%; animation-delay: 4s; }
+        .heart6 { top: 30%; left: 50%; animation-delay: 5s; }
+        .heart7 { top: 70%; right: 30%; animation-delay: 6s; }
+        .heart8 { bottom: 60%; left: 15%; animation-delay: 7s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        /* Header styles */
+        .hero {
+            text-align: center;
+            padding: 60px 0;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .main-title {
+            font-size: 3.5rem;
+            color: #d63384;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: #666;
+            font-style: italic;
+        }
+
+        /* Content sections */
+        .content {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .message-card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .message-card h2 {
+            color: #d63384;
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+
+        .message-card p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        /* Proposal specific styles */
+        .big-question {
+            font-size: 2.2rem;
+            color: #ff1744;
+            margin: 30px 0;
+            text-align: center;
+            animation: heartbeat 2s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .interactive-section {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .proposal-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .answer-btn {
+            padding: 20px 40px;
+            font-size: 1.5rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .yes-btn {
+            background: linear-gradient(45deg, #ff1744, #ff6b9d);
+            color: white;
+            transform: scale(1);
+        }
+
+        .yes-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 35px rgba(255, 23, 68, 0.4);
+        }
+
+        .yes-btn.bigger {
+            transform: scale(1.2);
+            animation: pulse-bigger 1s ease-in-out infinite;
+        }
+
+        .yes-btn.biggest {
+            transform: scale(1.4);
+            animation: pulse-biggest 1s ease-in-out infinite;
+        }
+
+        @keyframes pulse-bigger {
+            0%, 100% { transform: scale(1.2); }
+            50% { transform: scale(1.3); }
+        }
+
+        @keyframes pulse-biggest {
+            0%, 100% { transform: scale(1.4); }
+            50% { transform: scale(1.5); }
+        }
+
+        .no-btn {
+            background: linear-gradient(45deg, #ffebee, #ffc3e0);
+            color: #666;
+            border: 2px solid #ff6b9d;
+        }
+
+        .no-btn:hover {
+            background: linear-gradient(45deg, #ffc3e0, #ff9a9e);
+            transform: translateY(-2px);
+        }
+
+        .response-message {
+            text-align: center;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 15px;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .response-message.no-response {
+            background: linear-gradient(135deg, #ffebee, #ffc3e0);
+            color: #d63384;
+            border: 2px solid #ff6b9d;
+        }
+
+        .success-section {
+            text-align: center;
+            background: linear-gradient(135deg, #ffffff, #ffebee, #ffc3e0);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(255, 23, 68, 0.3);
+            border: 3px solid #ff1744;
+        }
+
+        .success-section h2 {
+            color: #ff1744;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            animation: celebration 2s ease-in-out infinite;
+        }
+
+        @keyframes celebration {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            25% { transform: scale(1.1) rotate(-2deg); }
+            75% { transform: scale(1.1) rotate(2deg); }
+        }
+
+        .couple-photo {
+            margin: 30px 0;
+        }
+
+        .couple-photo img {
+            max-width: 400px;
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(255, 23, 68, 0.3);
+            border: 5px solid #ffffff;
+        }
+
+        .couple-photo p {
+            font-size: 1.3rem;
+            color: #d63384;
+            margin-top: 20px;
+            font-style: italic;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Gallery section */
+        .gallery {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .gallery h3 {
+            text-align: center;
+            color: #d63384;
+            margin-bottom: 30px;
+            font-size: 2rem;
+        }
+
+        .love-quotes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .quote-card {
+            background: linear-gradient(135deg, #ffeef8, #fff0f5);
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 4px solid #d63384;
+            transition: transform 0.3s ease;
+        }
+
+        .quote-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .quote-card p {
+            font-size: 1.1rem;
+            font-style: italic;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .quote-card small {
+            color: #666;
+            font-weight: bold;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: #fff;
+            font-size: 1.1rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .message-card, .interactive-section, .gallery {
+                padding: 25px;
+            }
+            
+            .love-quotes {
+                grid-template-columns: 1fr;
+            }
+            
+            .heart {
+                font-size: 1.5rem;
+            }
+
+            .proposal-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+        }
+
+        @keyframes slideDown {
+            from { transform: translateX(-50%) translateY(-100%); opacity: 0; }
+            to { transform: translateX(-50%) translateY(0); opacity: 1; }
+        }
+        @keyframes slideUp {
+            from { transform: translateX(-50%) translateY(0); opacity: 1; }
+            to { transform: translateX(-50%) translateY(-100%); opacity: 0; }
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hearts-background">
+            <div class="heart heart1">❤️</div>
+            <div class="heart heart2">💕</div>
+            <div class="heart heart3">💖</div>
+            <div class="heart heart4">❤️</div>
+            <div class="heart heart5">💕</div>
+            <div class="heart heart6">💖</div>
+            <div class="heart heart7">❤️</div>
+            <div class="heart heart8">💕</div>
+        </div>
+        
+        <header class="hero">
+            <h1 class="main-title">Hey Jenni ❤️</h1>
+            <p class="subtitle">I have something special to ask you...</p>
+        </header>
+
+        <main class="content">
+            <section class="love-message">
+                <div class="message-card">
+                    <h2>💕 Will You Be My Valentine? 💕</h2>
+                    <p>Jenni, you make every day brighter just by being in it. Your smile, your laugh, the way you make me feel like the luckiest person alive...</p>
+                    <p>So here's my question for you:</p>
+                    <h3 class="big-question">Will you be my Valentine? 💖</h3>
+                </div>
+            </section>
+
+            <section class="interactive-section" id="proposal-section">
+                <div class="proposal-buttons">
+                    <button id="yes-button" class="answer-btn yes-btn">Yes! 💕</button>
+                    <button id="no-button" class="answer-btn no-btn">No 😔</button>
+                </div>
+                <div id="response-message" class="response-message hidden"></div>
+                <div id="success-section" class="success-section hidden">
+                    <h2>🎉 She said YES! 🎉</h2>
+                    <div class="couple-photo">
+                        <div style="font-size: 4rem; margin: 20px 0;">💕❤️💖❤️💕</div>
+                        <div style="background: linear-gradient(135deg, #ffffff, #ffebee); padding: 30px; border-radius: 15px; margin: 20px 0; border: 2px solid #ff1744;">
+                            <h3 style="color: #ff1744; margin-bottom: 15px;">You said YES! 🎉</h3>
+                            <p style="font-size: 1.2rem; color: #d63384; margin-bottom: 15px;">Jenni, you just made me the happiest person alive! ✨</p>
+                            <p style="font-size: 1.1rem; color: #666; margin-bottom: 10px;">Every day with you feels like a dream come true. Your smile lights up my world, your laugh is my favorite sound, and your love is my greatest treasure.</p>
+                            <p style="font-size: 1.1rem; color: #666; margin-bottom: 15px;">I can't wait to create more beautiful memories together, to hold your hand through every adventure, and to love you more with each passing day.</p>
+                            <p style="font-size: 1.3rem; color: #ff1744; font-weight: bold;">Happy Valentine's Day, my love! 💖</p>
+                        </div>
+                        <p style="font-size: 1.1rem; color: #d63384; font-style: italic;">Here's to forever and always... 💕</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="gallery">
+                <h3>Why You're Perfect For Me</h3>
+                <div class="love-quotes">
+                    <div class="quote-card">
+                        <p>"Every moment with you feels like a beautiful dream I never want to wake up from."</p>
+                        <small>- My heart</small>
+                    </div>
+                    <div class="quote-card">
+                        <p>"You're not just my Valentine, you're my everyday sunshine."</p>
+                        <small>- Me, always</small>
+                    </div>
+                    <div class="quote-card">
+                        <p>"In a world full of temporary things, you are my forever."</p>
+                        <small>- Us</small>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Made with ❤️ for Jenni on Valentine's Day 2026</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const yesButton = document.getElementById('yes-button');
+            const noButton = document.getElementById('no-button');
+            const responseMessage = document.getElementById('response-message');
+            const successSection = document.getElementById('success-section');
+            
+            let noClickCount = 0;
+
+            // No button click handler
+            noButton.addEventListener('click', function() {
+                noClickCount++;
+                
+                let message = '';
+                switch(noClickCount) {
+                    case 1:
+                        message = "Come on Jenni... 🥺 Look how the YES button is getting bigger! It really wants you to click it! 💕";
+                        yesButton.classList.add('bigger');
+                        break;
+                    case 2:
+                        message = "Jenni, please! 😭 The YES button is practically begging you now! It's gotten even BIGGER! 💖";
+                        yesButton.classList.remove('bigger');
+                        yesButton.classList.add('biggest');
+                        break;
+                    default:
+                        message = "Okay, okay... I get it. But that YES button is looking pretty tempting now, isn't it? 😏💕";
+                        break;
+                }
+                
+                responseMessage.textContent = message;
+                responseMessage.className = 'response-message no-response';
+                responseMessage.classList.remove('hidden');
+                
+                createSadHearts();
+                
+                noButton.style.animation = 'shake 0.5s ease-in-out';
+                setTimeout(() => {
+                    noButton.style.animation = '';
+                }, 500);
+            });
+
+            // Yes button click handler
+            yesButton.addEventListener('click', function() {
+                document.querySelector('.proposal-buttons').style.display = 'none';
+                responseMessage.classList.add('hidden');
+                successSection.classList.remove('hidden');
+                
+                createCelebrationHearts();
+                createConfetti();
+                
+                setTimeout(() => {
+                    showToast('🎉 Best Valentine\'s Day EVER! 🎉');
+                }, 1000);
+            });
+
+            function createSadHearts() {
+                for (let i = 0; i < 5; i++) {
+                    setTimeout(() => {
+                        const heart = document.createElement('div');
+                        heart.innerHTML = '💔';
+                        heart.style.cssText = `
+                            position: fixed;
+                            font-size: 2rem;
+                            pointer-events: none;
+                            z-index: 1000;
+                            left: ${Math.random() * window.innerWidth}px;
+                            top: ${Math.random() * window.innerHeight}px;
+                        `;
+                        
+                        document.body.appendChild(heart);
+                        
+                        heart.animate([
+                            { opacity: 1, transform: 'scale(1) translateY(0)' },
+                            { opacity: 0, transform: 'scale(0.5) translateY(100px)' }
+                        ], {
+                            duration: 2000,
+                            easing: 'ease-out'
+                        }).onfinish = () => heart.remove();
+                    }, i * 200);
+                }
+            }
+
+            function createCelebrationHearts() {
+                for (let i = 0; i < 20; i++) {
+                    setTimeout(() => {
+                        const hearts = ['❤️', '💕', '💖', '💗', '💝'];
+                        const heart = document.createElement('div');
+                        heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
+                        heart.style.cssText = `
+                            position: fixed;
+                            font-size: ${1.5 + Math.random() * 2}rem;
+                            pointer-events: none;
+                            z-index: 1000;
+                            left: ${Math.random() * window.innerWidth}px;
+                            top: ${window.innerHeight + 50}px;
+                        `;
+                        
+                        document.body.appendChild(heart);
+                        
+                        heart.animate([
+                            { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
+                            { transform: `translateY(-${window.innerHeight + 100}px) rotate(360deg)`, opacity: 0 }
+                        ], {
+                            duration: 3000 + Math.random() * 2000,
+                            easing: 'ease-out'
+                        }).onfinish = () => heart.remove();
+                    }, i * 100);
+                }
+            }
+
+            function createConfetti() {
+                for (let i = 0; i < 50; i++) {
+                    setTimeout(() => {
+                        const confetti = document.createElement('div');
+                        confetti.style.cssText = `
+                            position: fixed;
+                            width: 10px;
+                            height: 10px;
+                            background: ${['#ff1744', '#ff6b9d', '#ffc3e0', '#ffffff', '#ffebee'][Math.floor(Math.random() * 5)]};
+                            pointer-events: none;
+                            z-index: 999;
+                            left: ${Math.random() * window.innerWidth}px;
+                            top: -10px;
+                            border-radius: 50%;
+                        `;
+                        
+                        document.body.appendChild(confetti);
+                        
+                        confetti.animate([
+                            { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
+                            { transform: `translateY(${window.innerHeight + 50}px) rotate(720deg)`, opacity: 0 }
+                        ], {
+                            duration: 3000 + Math.random() * 2000,
+                            easing: 'ease-out'
+                        }).onfinish = () => confetti.remove();
+                    }, i * 50);
+                }
+            }
+
+            function showToast(message) {
+                const toast = document.createElement('div');
+                toast.textContent = message;
+                toast.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    background: linear-gradient(45deg, #ff1744, #ff6b9d);
+                    color: white;
+                    padding: 15px 25px;
+                    border-radius: 25px;
+                    font-weight: bold;
+                    z-index: 1001;
+                    box-shadow: 0 5px 15px rgba(255, 23, 68, 0.3);
+                    animation: slideDown 0.5s ease-out;
+                `;
+                
+                document.body.appendChild(toast);
+                
+                setTimeout(() => {
+                    toast.style.animation = 'slideUp 0.5s ease-in forwards';
+                    setTimeout(() => toast.remove(), 500);
+                }, 4000);
+            }
+
+            document.addEventListener('mousemove', function(e) {
+                if (Math.random() < 0.1) {
+                    const sparkle = document.createElement('div');
+                    sparkle.innerHTML = '✨';
+                    sparkle.style.cssText = `
+                        position: fixed;
+                        font-size: 1rem;
+                        pointer-events: none;
+                        z-index: 998;
+                        left: ${e.clientX}px;
+                        top: ${e.clientY}px;
+                        color: #ff6b9d;
+                    `;
+                    
+                    document.body.appendChild(sparkle);
+                    
+                    sparkle.animate([
+                        { opacity: 0, transform: 'scale(0) rotate(0deg)' },
+                        { opacity: 1, transform: 'scale(1) rotate(180deg)' },
+                        { opacity: 0, transform: 'scale(0) rotate(360deg)' }
+                    ], {
+                        duration: 1500,
+                        easing: 'ease-out'
+                    }).onfinish = () => sparkle.remove();
+                }
+            });
+
+            setTimeout(() => {
+                showToast('💕 Welcome Jenni! This is for you... 💕');
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
